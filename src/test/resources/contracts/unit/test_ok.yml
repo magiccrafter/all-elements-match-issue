@@ -1,0 +1,23 @@
+description: test
+request:
+  method: GET
+  url: /rest/test
+response:
+  status: 200
+  body: |
+    [
+      {
+        "displayId": "1L9zO9O"
+      },
+      {
+        "displayId": "1L9zO91"
+      }
+    ]
+  matchers:
+    headers:
+      - key: Content-Type
+        regex: "application/json.*"
+    body:
+      - path: "$[*].displayId"
+        type: by_regex
+        value: '^[a-zA-Z0-9]{1,20}$'
